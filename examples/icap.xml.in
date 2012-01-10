@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "@prefix@/share/@PACKAGE_NAME@/@DTD@">
+<tsung loglevel="debug">
+
+  <clients>
+    <client host="localhost" use_controller_vm="true" maxusers="1000" />
+  </clients>
+
+  <!-- Server side setup -->
+ <servers>
+  <server host="10.64.75.193" port="1344" type="tcp"/>
+ </servers>
+
+  <!-- <monitoring> -->
+  <!--  <monitor host="localhost"/> -->
+  <!-- </monitoring> -->
+  
+ <load>
+  <arrivalphase phase="1" duration="5" unit="minute">
+    <users interarrival="0.01" unit="second"></users>
+  </arrivalphase>
+ </load>
+
+ <sessions>
+  <session probability="100" name="icap-example" type="ts_icap">
+      <request>
+        <icap type="request">
+            http://www.baidu.com/
+        </icap>
+      </request>
+      <thinktime value="1"/>
+
+    <!-- <transaction name="add"> -->
+    <!--   <request> -->
+	  <!-- <icap type="compute" arith="add">4 5</icap> -->
+	<!-- </request> -->
+    <!-- </transaction> --> <!-- <thinktime value="2"/> -->
+
+    <!-- <transaction name="sub"> -->
+    <!--   <request> -->
+	  <!-- <icap type="compute" arith="sub">9 3</icap> -->
+	<!-- </request> -->
+    <!-- </transaction> -->
+
+  </session>
+ </sessions>
+</tsung>
+
