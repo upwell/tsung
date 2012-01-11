@@ -995,6 +995,7 @@ handle_data_msg(Data,State=#state_rcv{dump=Dump,request=Req,id=Id,clienttype=Typ
   when Req#ts_request.ack==parse->
     ts_mon:rcvmes({Dump, self(), Data}),
 
+    %% han_comment parse here
     {NewState, Opts, Close} = Type:parse(Data, State),
     NewBuffer=set_new_buffer(NewState, Data),
 

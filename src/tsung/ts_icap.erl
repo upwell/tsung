@@ -26,7 +26,7 @@
 session_defaults() ->
     {ok, true}.
 
-decode_buffer(Buffer, []) ->
+decode_buffer(Buffer, #icap{}) ->
     Buffer. % FIXME ?
 
 %%----------------------------------------------------------------------
@@ -83,7 +83,7 @@ parse(Data, State=#state_rcv{session=Icap}) ->
     Header = State#state_rcv.acc ++ List,
     ?LOGF("handebug Header[~p] Size[~p]~n", [Header, TotalSize], ?NOTICE),
     parse_headers(Icap, Header, State#state_rcv.host),
-    {State#state_rcv{ack_done = true, datasize=TotalSize}, [], true}.
+    {State#state_rcv{ack_done = true, datasize=TotalSize}, [], false}.
 
 parse_headers(H, Tail, Host) ->
     case get_line(Tail) of
