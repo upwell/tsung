@@ -81,7 +81,7 @@ parse(Data, State=#state_rcv{session=Icap}) ->
     List = binary_to_list(Data),
     TotalSize = size(Data),
     Header = State#state_rcv.acc ++ List,
-    ?LOGF("handebug Header[~p] Size[~p]~n", [Header, TotalSize], ?NOTICE),
+    ?DebugF("handebug Header[~p] Size[~p]~n", [Header, TotalSize]),
     parse_headers(Icap, Header, State#state_rcv.host),
     {State#state_rcv{ack_done = true, datasize=TotalSize}, [], false}.
 

@@ -23,7 +23,7 @@ parse_config(Element = #xmlElement{name=icap},
         subst    = SubstFlag, match=MatchRegExp}) ->
     Host = Server#server.host,
     Port = Server#server.port,
-    ?LOGF("handebug Host:[~p], Port:[~p]", [Host, Port], ?NOTICE),
+    ?DebugF("handebug Host:[~p], Port:[~p]", [Host, Port]),
     Request = case ts_config:getAttr(atom, Element#xmlElement.attributes, type) of
                 request ->
                     ValRaw = ts_config:getText(Element#xmlElement.content),
